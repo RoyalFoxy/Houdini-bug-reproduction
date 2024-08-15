@@ -1,5 +1,5 @@
-query ActiveOrder {
-  order {
+query ActiveOrder($amount: Int!) {
+  order(amount: $amount) {
     id
     createdAt
     updatedAt

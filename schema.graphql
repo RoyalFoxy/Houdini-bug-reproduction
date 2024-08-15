@@ -115,7 +115,7 @@ type ProductVariant {
 }
 
 type Query {
-  order: [Order!]!
+  order(amount: Int!): [Order!]!
 }
 
 type User {

@@ -10,6 +10,7 @@
 
 	let amountPerLoadCall = 1000;
 	let listenerAmount = 10;
+	let orderAmount = 10;
 
 	let reloading = false;
 
@@ -17,7 +18,7 @@
 		reloading = true;
 
 		for (let i = 0; i < amountPerLoadCall; i++) {
-			await load_ActiveOrder({ blocking: true });
+			await load_ActiveOrder({ blocking: true, variables: { amount: orderAmount } });
 		}
 
 		loadCounter += amountPerLoadCall;
@@ -57,6 +58,19 @@
 			disabled={reloading}
 		/>
 		<p>{listenerAmount}</p>
+	</div>
+
+  <div style="display: flex;">
+		<p>Order amount</p>
+		<input
+			type="range"
+			min="1"
+			max="100"
+			bind:value={orderAmount}
+			step="1"
+			disabled={reloading}
+		/>
+		<p>{orderAmount}</p>
 	</div>
 
 	<p>Fetching {$ActiveOrder.fetching}</p>

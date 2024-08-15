@@ -2,7 +2,7 @@ import { gql } from '@elysiajs/apollo';
 
 const SCHEMA = gql`
 	type Query {
-		order: [Order!]!
+		order(amount: Int!): [Order!]!
 	}
 
 	type Order {
