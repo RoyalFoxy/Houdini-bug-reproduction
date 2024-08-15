@@ -2,7 +2,7 @@
   "name": "graphql-api",
   "version": "1.0.50",
   "scripts": {
-    "dev": "bun src/index.js"
+    "dev": "node src/index.js"
   },
   "type": "module",
   "dependencies": {
