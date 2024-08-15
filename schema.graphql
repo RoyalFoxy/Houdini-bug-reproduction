@@ -1,0 +1,128 @@
+"""
+Indicates exactly one field must be supplied and this field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
+
+type Address {
+  city: String
+  company: String
+  country: Country!
+  createdAt: DateTime!
+  defaultBillingAddress: Boolean
+  defaultShippingAddress: Boolean
+  fullName: String
+  id: ID!
+  phoneNumber: String
+  postalCode: String
+  province: String
+  streetLine1: String!
+  streetLine2: String
+  updatedAt: DateTime!
+}
+
+type Country {
+  code: String!
+  createdAt: DateTime!
+  enabled: Boolean!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  type: String!
+  updatedAt: DateTime!
+}
+
+type Customer {
+  addresses: [Address!]
+  createdAt: DateTime!
+  emailAddress: String!
+  firstName: String!
+  id: ID!
+  lastName: String!
+  phoneNumber: String
+  title: String
+  updatedAt: DateTime!
+  user: User
+}
+
+scalar DateTime
+
+enum LanguageCode {
+  de_CH
+  en
+  en_US
+}
+
+scalar Money
+
+type Order {
+  active: Boolean!
+  billingAddress: OrderAddress
+  code: String!
+  createdAt: DateTime!
+  customer: Customer
+  id: ID!
+  lines: [OrderLine!]!
+  orderPlacedAt: DateTime
+  shipping: Money!
+  shippingAddress: OrderAddress
+  state: String!
+  total: Money!
+  totalQuantity: Int!
+  type: OrderType!
+  updatedAt: DateTime!
+}
+
+type OrderAddress {
+  city: String
+  company: String
+  country: String
+  countryCode: String
+  fullName: String
+  phoneNumber: String
+  postalCode: String
+  province: String
+  streetLine1: String
+  streetLine2: String
+}
+
+type OrderLine {
+  createdAt: DateTime!
+  id: ID!
+  linePrice: Money!
+  orderId: ID!
+  productVariant: ProductVariant!
+  quantity: Int!
+  unitPrice: Money!
+  updatedAt: DateTime!
+}
+
+enum OrderType {
+  Aggregate
+  Regular
+  Seller
+}
+
+type ProductVariant {
+  createdAt: DateTime!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  price: Money!
+  productId: ID!
+  sku: String!
+  stockLevel: String!
+  updatedAt: DateTime!
+}
+
+type Query {
+  order: [Order!]!
+}
+
+type User {
+  createdAt: DateTime!
+  id: ID!
+  identifier: String!
+  lastLogin: DateTime
+  updatedAt: DateTime!
+  verified: Boolean!
+}
