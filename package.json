@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "graphql-api": "cd graphql-api && node dev",
+    "graphql-api": "cd graphql-api && npm dev",
     "frontend": "vite dev",
     "dev": "svelte-kit sync; concurrently \"npm:graphql-api\" \"npm:frontend\"",
     "install": "cd graphql-api && npm install;"
