@@ -2,17 +2,14 @@
   "name": "graphql-api",
   "version": "1.0.50",
   "scripts": {
-    "dev": "bun src/index.ts"
+    "dev": "bun src/index.js"
   },
   "type": "module",
   "dependencies": {
     "@apollo/server": "^4.11.0",
-    "@elysiajs/apollo": "^1.1.0",
-    "@elysiajs/cors": "^1.1.0",
-    "elysia": "latest"
-  },
-  "devDependencies": {
-    "bun-types": "latest"
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "graphql-tag": "^2.12.6"
   },
   "module": "src/index.js"
 }

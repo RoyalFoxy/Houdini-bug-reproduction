@@ -1,4 +1,4 @@
-import { gql } from '@elysiajs/apollo';
+import { gql } from 'graphql-tag';
 
 const SCHEMA = gql`
 	type Query {
