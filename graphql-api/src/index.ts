@@ -1,8 +1,7 @@
-import '@bogeychan/elysia-polyfills/node/index.js';
 import { Elysia } from 'elysia';
 import { apollo } from '@elysiajs/apollo';
 import { cors } from '@elysiajs/cors';
-import SCHEMA from './schema.js';
+import SCHEMA from './schema';
 
 const graphqlApi = await apollo({
 	typeDefs: SCHEMA,
@@ -183,6 +182,13 @@ const graphqlApi = await apollo({
 	}
 });
 
-const app = new Elysia().use(graphqlApi).use(cors()).listen(4000);
+const app = new Elysia()
+	.use(graphqlApi)
+	.use(
+		cors({
+			origin: true
+		})
+	)
+	.listen(4000);
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);

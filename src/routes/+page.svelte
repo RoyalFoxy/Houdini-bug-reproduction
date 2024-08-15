@@ -52,7 +52,7 @@
 		<input
 			type="range"
 			min="1"
-			max="100"
+			max="1000"
 			bind:value={listenerAmount}
 			step="1"
 			disabled={reloading}
@@ -65,7 +65,7 @@
 		<input
 			type="range"
 			min="1"
-			max="100"
+			max="1000"
 			bind:value={orderAmount}
 			step="1"
 			disabled={reloading}
