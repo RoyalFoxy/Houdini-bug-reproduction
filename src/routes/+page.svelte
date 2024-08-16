@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { load_ActiveOrder } from '$houdini';
 	import type { PageData } from './$houdini';
+	import { preloadData } from '$app/navigation';
 
 	export let data: PageData;
 
@@ -8,7 +9,7 @@
 
 	let loadCounter = 0;
 
-	let amountPerLoadCall = 1000;
+	let amountPerLoadCall = 30;
 	let listenerAmount = 10;
 	let orderAmount = 10;
 
@@ -18,7 +19,7 @@
 		reloading = true;
 
 		for (let i = 0; i < amountPerLoadCall; i++) {
-			await load_ActiveOrder({ blocking: true, variables: { amount: orderAmount } });
+			await preloadData(`/${i % 2}`);
 		}
 
 		loadCounter += amountPerLoadCall;
@@ -38,10 +39,10 @@
 		<p>Amount per load call</p>
 		<input
 			type="range"
-			min="100"
-			max="10000"
+			min="10"
+			max="1000"
 			bind:value={amountPerLoadCall}
-			step="100"
+			step="1"
 			disabled={reloading}
 		/>
 		<p>{amountPerLoadCall}</p>
@@ -60,16 +61,9 @@
 		<p>{listenerAmount}</p>
 	</div>
 
-  <div style="display: flex;">
+	<div style="display: flex;">
 		<p>Order amount</p>
-		<input
-			type="range"
-			min="1"
-			max="1000"
-			bind:value={orderAmount}
-			step="1"
-			disabled={reloading}
-		/>
+		<input type="range" min="1" max="1000" bind:value={orderAmount} step="1" disabled={reloading} />
 		<p>{orderAmount}</p>
 	</div>
 
